@@ -69,7 +69,20 @@ KeyboardInputManager.prototype.listen = function () {
     }
   });
 
+  this.bindButtonPress(".answer-wrong", this.pressWrong);
+  this.bindButtonPress(".answer-right", this.pressRight);
+
   // Respond to button presses
   this.bindButtonPress(".retry-button", this.restart);
   this.bindButtonPress(".keep-playing-button", this.keepPlaying);
 };
+
+KeyboardInputManager.prototype.pressWrong = function(event){
+  event.preventDefault();
+  this.emit("answerSelected", 0);
+}
+
+KeyboardInputManager.prototype.pressRight = function(event){
+  event.preventDefault();
+  this.emit("answerSelected", 1);
+}
