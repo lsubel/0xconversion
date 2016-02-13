@@ -31,6 +31,16 @@ h1.title {
   display: block;
   float: left;
 }
+.math-base {
+  font-size: 18px;
+}
+.tile-inner {
+    border-radius: 3px;
+    text-align: center;
+    font-weight: bold;
+    z-index: 10;
+    font-size: 40px;
+}
 @-webkit-keyframes move-up {
   0% {
     top: 25px;
@@ -197,4 +207,8 @@ h1.title {
   -webkit-animation-fill-mode: both;
   -moz-animation-fill-mode: both;
   animation-fill-mode: both;
+}
+
+.progress-bar {
+  width: 100%;
 }
