@@ -1,6 +1,7 @@
 function HTMLActuator() {
-  this.questionLeftContainer    = document.querySelector(".question-left");
-  this.questionRightContainer   = document.querySelector(".question-right");
+  this.questionLeftContainer      = document.querySelector(".question-left");
+  this.questionOperatorContainer  = document.querySelector(".question-operator");
+  this.questionRightContainer     = document.querySelector(".question-right");
   this.scoreContainer   = document.querySelector(".score-container");
   this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
@@ -13,10 +14,12 @@ HTMLActuator.prototype.actuate = function (questions, metadata) {
 
   window.requestAnimationFrame(function () {
     self.clearContainer(self.questionLeftContainer);
+    self.clearContainer(self.questionOperatorContainer);
     self.clearContainer(self.questionRightContainer);
 
     // write down the current questions
     self.addQuestions(self.questionLeftContainer,   questions.leftAnswer,   questions.leftBase);
+    self.setOperator(self.questionOperatorContainer, questions.operator);
     self.addQuestions(self.questionRightContainer,  questions.rightAnswer,  questions.rightBase);
 
     self.updateScore(metadata.score);
@@ -38,6 +41,22 @@ HTMLActuator.prototype.addQuestions = function(container, value, base){
 
   inner.classList.add("tile-inner");
   inner.textContent = value + "_" + base;
+
+  // Add the inner part of the tile to the wrapper
+  wrapper.appendChild(inner);
+
+  // Put the tile on the board
+  container.appendChild(wrapper);
+};
+
+HTMLActuator.prototype.setOperator = function(container, operator){
+  var self = this;
+
+  var wrapper   = document.createElement("div");
+  var inner     = document.createElement("div");
+
+  inner.classList.add("tile-inner");
+  inner.textContent = operator;
 
   // Add the inner part of the tile to the wrapper
   wrapper.appendChild(inner);
