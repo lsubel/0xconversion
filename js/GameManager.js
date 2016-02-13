@@ -4,10 +4,10 @@ function GameManager(InputManager, Actuator, StorageManager) {
   this.actuator       = new Actuator;
 
   this.currentQuestion;
-  this.list_bases = [2,4,8,16];
+  this.list_bases = [2,8,10,16];
 
   this.inputManager.on("answerSelected", this.checkAnswer.bind(this));
-
+  this.inputManager.on("wrongAnswer", this.wrongAnswer.bind(this));
   this.setup();
 };
 
@@ -45,13 +45,32 @@ GameManager.prototype.generateNewQuestion = function(){
   var rightValue = leftValue + isDifferent*(Math.round(Math.random() * 5  - 2.5));
 
   var question = {};
+  // add answer information
   question.operator = "==";
   question.leftAnswer   = leftValue;
   question.leftBase     = leftBase;
   question.rightAnswer  = rightValue;
   question.rightBase    = rightBase;
+  // add meta information
+  question.answertime             = 10000;
+  question.answertimeoutcallback  = this.wrongAnswer.bind(this);
 
   return question;
+}
+
+GameManager.prototype.wrongAnswer = function(){
+    this.score = 0;
+    this.question = this.generateNewQuestion();
+    this.actuate();
+}
+
+GameManager.prototype.correctAnswer = function(){
+  this.score += 1;
+  if(this.bestscore < this.score){
+    this.bestscore = this.score;
+  }
+  this.question = this.generateNewQuestion();
+  this.actuate();
 }
 
 // Check whether the answer was correct
@@ -66,20 +85,12 @@ GameManager.prototype.checkAnswer = function(answer){
   var isCorrect = (self.question.leftAnswer == self.question.rightAnswer) ? 1 : 0;
   // if the answer is wrong, reset score,
   if(isCorrect != answer){
-    this.score = 0;
+    this.wrongAnswer();
   }
   // otherwise increase counter select the next question
   else{
-    this.score += 1;
-    if(this.bestscore < this.score){
-      this.bestscore = this.score;
-    }
+    this.correctAnswer();
   }
-
-  this.question = this.generateNewQuestion();
-
-  // Update the actuator
-  this.actuate();
 }
 
 // send the upgraded gamestate to the board
