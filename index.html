@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Number game</title>
-    <link type="text/css" rel="stylesheet" href="css/main.css"></link>
-  </head>
-  <body>
-    <div class="container">
-      <div class="heading">
-        <h1 class="title">Number game</h1>
-        <div class="scores-container">
-          <div class="score-container"></div>
-          <div class="best-container"></div>
-        </div>
-      </div>
 
-      <div class="game-container">
+<head>
+  <meta charset="utf-8">
+  <title>Number game</title>
+  <link type="text/css" rel="stylesheet" href="css/main.css"></link>
+</head>
 
-
-                <div class="lower">
-        	        <a class="keep-playing-button">Keep going</a>
-                  <a class="retry-button">Try again</a>
-                  <div class="score-sharing"></div>
-                </div>
-
-
-        <div class="question-container">
-          <div class="question-left">
-          </div>
-          <div class="question-right">
-          </div>
-        </div>
-        <div class="button-container">
-        </div>
+<body>
+  <div class="container">
+    <div class="heading">
+      <h1 class="title">Number game</h1>
+      <div class="scores-container">
+        <div class="score-container"></div>
+        <div class="best-container"></div>
       </div>
     </div>
-    <script src="js/HTMLActuator.js"></script>
-    <script src="js/KeyboardInputManager.js"></script>
-    <script src="js/GameManager.js"></script>
-    <script src="js/Application.js"></script>
-  </body>
+
+    <div class="game-container">
+
+      <div class="game-message">
+        <p></p>
+        <div class="lower">
+          <a class="keep-playing-button">Keep going</a>
+          <a class="retry-button">Try again</a>
+        </div>
+      </div>
+
+      <div class="question-container">
+        <div class="question-left">
+        </div>
+        <div class="question-operator">
+        </div>
+        <div class="question-right">
+        </div>
+      </div>
+      <div class="button-container">
+      </div>
+    </div>
+  </div>
+  <script src="js/HTMLActuator.js"></script>
+  <script src="js/KeyboardInputManager.js"></script>
+  <script src="js/GameManager.js"></script>
+  <script src="js/Application.js"></script>
+</body>
+
 </html>
