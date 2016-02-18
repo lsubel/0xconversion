@@ -198,10 +198,10 @@ h1.title {
 .game-message.game-won a.keep-playing-button {
   display: inline-block;
 }
-.game-message.game-won, .game-message.game-over {
+.game-message.game-won, .game-message.show-popup {
   display: block;
 }
-.game-message.game-won p, .game-message.game-over p {
+.game-message.game-won p, .game-message.show-popup p {
   -webkit-animation: slide-up 1.5s ease-in-out 2500ms;
   -moz-animation: slide-up 1.5s ease-in-out 2500ms;
   animation: slide-up 1.5s ease-in-out 2500ms;
@@ -209,7 +209,7 @@ h1.title {
   -moz-animation-fill-mode: both;
   animation-fill-mode: both;
 }
-.game-message.game-won .mailing-list, .game-message.game-over .mailing-list {
+.game-message.game-won .mailing-list, .game-message.show-popup .mailing-list {
   -webkit-animation: fade-in 1.5s ease-in-out 2500ms;
   -moz-animation: fade-in 1.5s ease-in-out 2500ms;
   animation: fade-in 1.5s ease-in-out 2500ms;
