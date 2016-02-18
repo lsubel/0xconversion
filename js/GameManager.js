@@ -6,11 +6,18 @@ function GameManager(InputManager, Actuator, StorageManager) {
   this.currentQuestion;
   this.list_bases = [2,8,10,16];
 
+  this.inputManager.on("openMenu", this.openMenu.bind(this));
   this.inputManager.on("answerSelected", this.checkAnswer.bind(this));
   this.inputManager.on("wrongAnswer", this.wrongAnswer.bind(this));
   this.inputManager.on("restartGame", this.restart.bind(this));
-  this.setup();
+  this.inputManager.on("setDifficulty", this.setDifficulty.bind(this));
+  //  this.setup();
+  this.openMenu();
 };
+
+GameManager.prototype.openMenu = function(){
+  this.actuator.showMainmenuPopup();
+}
 
 GameManager.prototype.restart = function(){
   this.actuator.restartGame();
@@ -27,6 +34,12 @@ GameManager.prototype.setup = function(){
 
   // Update the actuator
   this.actuate();
+}
+
+GameManager.prototype.setDifficulty = function(difficulty){
+  this.difficulty = difficulty;
+  this.actuator.hideMainmenuPopup();
+  this.restart();
 }
 
 // Return true if the game is lost, or has won and the user hasn't kept playing
@@ -68,8 +81,8 @@ GameManager.prototype.wrongAnswer = function(){
 
 GameManager.prototype.correctAnswer = function(){
   this.score += 1;
-  if(this.storageManager.getBestScore() < this.score){
-    this.storageManager.setBestScore(this.score);
+  if(this.storageManager.getBestScore(this.difficulty) < this.score){
+    this.storageManager.setBestScore(this.difficulty, this.score);
   }
   this.question = this.generateNewQuestion();
   this.actuate();
@@ -100,7 +113,7 @@ GameManager.prototype.actuate = function () {
   this.actuator.actuate(this.question, {
     score:      this.score,
     over:       this.over,
-    bestScore:  this.storageManager.getBestScore(),
+    bestScore:  this.storageManager.getBestScore(this.difficulty),
     terminated: this.isGameTerminated()
   });
 }
