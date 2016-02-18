@@ -9,6 +9,7 @@ function HTMLActuator() {
 
   this.timeReference  = new Date();
   this.score          = 0;
+  this.over           = false;
 }
 
 HTMLActuator.prototype.calculateStrLength = function (value, base){
@@ -24,30 +25,37 @@ HTMLActuator.prototype.actuate = function (questions, metadata) {
   var self = this;
 
   window.requestAnimationFrame(function () {
-    // reset containers + progressbar
-    self.clearContainer(self.questionLeftContainer);
-    self.clearContainer(self.questionOperatorContainer);
-    self.clearContainer(self.questionRightContainer);
+    self.over = metadata.over;
 
-    var timediff            = Date.now() + questions.answertime;
-    self.progressbar.max    = questions.answertime;
-    self.progressbar.value  = questions.answertime;
-    self.answertime         = timediff;
+    if(!self.over){
+      // reset containers + progressbar
+      self.clearContainer(self.questionLeftContainer);
+      self.clearContainer(self.questionOperatorContainer);
+      self.clearContainer(self.questionRightContainer);
 
-    var left_length   = self.calculateStrLength(questions.leftAnswer,   questions.leftBase);
-    var right_length  = self.calculateStrLength(questions.rightAnswer,  questions.rightBase);
-    var string_length = Math.max(left_length, right_length);
+      var timediff            = Date.now() + questions.answertime;
+      self.progressbar.max    = questions.answertime;
+      self.progressbar.value  = questions.answertime;
+      self.answertime         = timediff;
 
-    // write down the current questions
-    self.addQuestions(self.questionLeftContainer,   questions.leftAnswer,   questions.leftBase, string_length);
-    self.setOperator(self.questionOperatorContainer, questions.operator);
-    self.addQuestions(self.questionRightContainer,  questions.rightAnswer,  questions.rightBase, string_length);
+      var left_length   = self.calculateStrLength(questions.leftAnswer,   questions.leftBase);
+      var right_length  = self.calculateStrLength(questions.rightAnswer,  questions.rightBase);
+      var string_length = Math.max(left_length, right_length);
 
-    // update score + bestscore
-    self.updateScore(metadata.score);
-    self.updateBestScore(metadata.bestScore);
+      // write down the current questions
+      self.addQuestions(self.questionLeftContainer,   questions.leftAnswer,   questions.leftBase, string_length);
+      self.setOperator(self.questionOperatorContainer, questions.operator);
+      self.addQuestions(self.questionRightContainer,  questions.rightAnswer,  questions.rightBase, string_length);
 
-    self.updateProgressBar(questions.answertimeoutcallback);
+      // update score + bestscore
+      self.updateScore(metadata.score);
+      self.updateBestScore(metadata.bestScore);
+
+      self.updateProgressBar(questions.answertimeoutcallback);
+    }
+    else{
+      self.stopProgressBar();
+    }
   });
 };
 
@@ -125,6 +133,8 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 
 HTMLActuator.prototype.updateProgressBar = function(callback){
   var self = this;
+  if(self.over)
+    return;
   var timediff = self.answertime - Date.now();
   // if below zero, time has run out
   if(timediff < 0){
@@ -136,4 +146,8 @@ HTMLActuator.prototype.updateProgressBar = function(callback){
       self.updateProgressBar(callback);
     });
   }
+}
+
+HTMLActuator.prototype.stopProgressBar = function(){
+  this.progressbar.value = 0;
 }
