@@ -55,9 +55,14 @@ HTMLActuator.prototype.actuate = function (questions, metadata) {
     }
     else{
       self.stopProgressBar();
+      self.showPopup();
     }
   });
 };
+
+HTMLActuator.prototype.restartGame = function(){
+  this.hidePopup();
+}
 
 HTMLActuator.prototype.clearContainer = function (container) {
   while (container.firstChild) {
@@ -150,4 +155,13 @@ HTMLActuator.prototype.updateProgressBar = function(callback){
 
 HTMLActuator.prototype.stopProgressBar = function(){
   this.progressbar.value = 0;
+}
+
+HTMLActuator.prototype.showPopup = function(){
+  this.messageContainer.classList.add("game-over");
+  this.messageContainer.getElementsByTagName("p")[0].textContent = "Game over";
+}
+
+HTMLActuator.prototype.hidePopup = function(){
+  this.messageContainer.classList.remove("game-over");
 }

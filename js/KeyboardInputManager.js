@@ -26,7 +26,7 @@ KeyboardInputManager.prototype.emit = function (event, data) {
 
 KeyboardInputManager.prototype.restart = function (event) {
   event.preventDefault();
-  this.emit("restart");
+  this.emit("restartGame");
 };
 
 KeyboardInputManager.prototype.keepPlaying = function (event) {
@@ -73,8 +73,7 @@ KeyboardInputManager.prototype.listen = function () {
   this.bindButtonPress(".answer-right", this.pressRight);
 
   // Respond to button presses
-  this.bindButtonPress(".retry-button", this.restart);
-  this.bindButtonPress(".keep-playing-button", this.keepPlaying);
+  this.bindButtonPress(".restart-button", this.restart);
 };
 
 KeyboardInputManager.prototype.pressWrong = function(event){
