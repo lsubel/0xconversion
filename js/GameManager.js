@@ -1,6 +1,6 @@
 function GameManager(InputManager, Actuator, StorageManager) {
   this.inputManager   = new InputManager;
-  //  this.storageManager = new StorageManager;
+  this.storageManager = new StorageManager;
   this.actuator       = new Actuator;
 
   this.currentQuestion;
@@ -20,7 +20,6 @@ GameManager.prototype.restart = function(){
 GameManager.prototype.setup = function(){
   this.question    = this.generateNewQuestion();
   this.score       = 0;
-  this.bestscore   = 0;
   this.over        = false;
 
   // set an initial question
@@ -69,8 +68,8 @@ GameManager.prototype.wrongAnswer = function(){
 
 GameManager.prototype.correctAnswer = function(){
   this.score += 1;
-  if(this.bestscore < this.score){
-    this.bestscore = this.score;
+  if(this.storageManager.getBestScore() < this.score){
+    this.storageManager.setBestScore(this.score);
   }
   this.question = this.generateNewQuestion();
   this.actuate();
@@ -101,7 +100,7 @@ GameManager.prototype.actuate = function () {
   this.actuator.actuate(this.question, {
     score:      this.score,
     over:       this.over,
-    bestScore:  this.bestscore,
+    bestScore:  this.storageManager.getBestScore(),
     terminated: this.isGameTerminated()
   });
 }
