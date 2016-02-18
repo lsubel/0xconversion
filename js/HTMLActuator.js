@@ -6,6 +6,7 @@ function HTMLActuator() {
   this.bestContainer              = document.querySelector(".best-container");
   this.messageContainer           = document.querySelector(".game-message");
   this.progressbar                = document.querySelector(".progress-bar");
+  this.mainmenuContainer          = document.querySelector(".game-menu");
 
   this.timeReference  = new Date();
   this.score          = 0;
@@ -158,10 +159,20 @@ HTMLActuator.prototype.stopProgressBar = function(){
 }
 
 HTMLActuator.prototype.showGameoverPopup = function(score){
+  this.hideMainmenuPopup();
   this.messageContainer.classList.add("show-popup");
   this.messageContainer.getElementsByTagName("p")[1].textContent = "You received " + score + " points."
 }
 
 HTMLActuator.prototype.hideGameoverPopup = function(){
   this.messageContainer.classList.remove("show-popup");
+}
+
+HTMLActuator.prototype.showMainmenuPopup = function(score){
+  this.hideGameoverPopup();
+  this.mainmenuContainer.classList.add("show-popup");
+}
+
+HTMLActuator.prototype.hideMainmenuPopup = function(){
+  this.mainmenuContainer.classList.remove("show-popup");
 }

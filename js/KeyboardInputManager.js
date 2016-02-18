@@ -29,9 +29,27 @@ KeyboardInputManager.prototype.restart = function (event) {
   this.emit("restartGame");
 };
 
-KeyboardInputManager.prototype.keepPlaying = function (event) {
+KeyboardInputManager.prototype.goToMenu = function (event) {
   event.preventDefault();
-  this.emit("keepPlaying");
+  this.emit("openMenu");
+};
+
+var possible_difficulties = {
+  "answer-difficulty-easy": "easy",
+  "answer-difficulty-medium": "medium",
+  "answer-difficulty-hard": "hard"
+};
+
+KeyboardInputManager.prototype.setDifficulty = function (event) {
+  var keys = Object.keys(possible_difficulties);
+  for(index in keys){
+    var key = keys[index];
+    if(event.target.classList.contains(key)){
+      event.preventDefault();
+      this.emit("setDifficulty", possible_difficulties[key]);
+      return;
+    }
+  }
 };
 
 KeyboardInputManager.prototype.bindButtonPress = function (selector, fn) {
@@ -40,15 +58,15 @@ KeyboardInputManager.prototype.bindButtonPress = function (selector, fn) {
   button.addEventListener(this.eventTouchend, fn.bind(this));
 };
 
+var map = {
+  37: 0, // Left
+  39: 1, // Right
+  65: 0, // A
+  68: 1  // D
+};
+
 KeyboardInputManager.prototype.listen = function () {
   var self = this;
-
-  var map = {
-    37: 0, // Left
-    39: 1, // Right
-    65: 0, // A
-    68: 1  // D
-  };
 
   // Respond to direction keys
   document.addEventListener("keydown", function (event) {
@@ -72,7 +90,12 @@ KeyboardInputManager.prototype.listen = function () {
   this.bindButtonPress(".answer-wrong", this.pressWrong);
   this.bindButtonPress(".answer-right", this.pressRight);
 
-  // Respond to button presses
+  this.bindButtonPress(".answer-difficulty-easy",   this.setDifficulty);
+  this.bindButtonPress(".answer-difficulty-medium", this.setDifficulty);
+  this.bindButtonPress(".answer-difficulty-hard",   this.setDifficulty);
+
+  this.bindButtonPress(".openmenu-button", this.goToMenu);
+
   this.bindButtonPress(".restart-button", this.restart);
 };
 
