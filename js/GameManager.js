@@ -26,6 +26,8 @@ GameManager.prototype.restart = function(){
 }
 
 GameManager.prototype.setup = function(){
+  this.questionManager.reset();
+  
   this.question    = this.questionManager.generateNewQuestion();
   this.score       = 0;
   this.over        = false;

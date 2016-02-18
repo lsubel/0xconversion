@@ -47,6 +47,10 @@ function NumberQuestionManager(fn){
   this.wrongAnswer = fn;
 }
 
+NumberQuestionManager.prototype.reset = function(){
+  this.answertime = 10000;
+}
+
 NumberQuestionManager.prototype.setDifficulty = function(difficulty){
   this.current_generator  = this.difficulty[difficulty];
   this.current_difficulty = difficulty;
@@ -55,8 +59,10 @@ NumberQuestionManager.prototype.setDifficulty = function(difficulty){
 NumberQuestionManager.prototype.generateNewQuestion = function(){
   this.current_question = this.current_generator.generateNewQuestion();
   // add meta information
-  this.current_question.answertime             = 10000;
+  this.current_question.answertime             = this.answertime;
   this.current_question.answertimeoutcallback  = this.wrongAnswer;
+  // decrease question time
+  this.answertime = this.answertime * 0.98;
   return this.current_question;
 }
 
