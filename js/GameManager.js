@@ -16,8 +16,6 @@ GameManager.prototype.setup = function(){
   this.score       = 0;
   this.bestscore   = 0;
   this.over        = false;
-  this.won         = false;
-  this.keepPlaying = false;
 
   // set an initial question
   this.question    = this.generateNewQuestion();
@@ -28,7 +26,7 @@ GameManager.prototype.setup = function(){
 
 // Return true if the game is lost, or has won and the user hasn't kept playing
 GameManager.prototype.isGameTerminated = function () {
-  return this.over || (this.won && !this.keepPlaying);
+  return this.over;
 };
 
 GameManager.prototype.generateNewQuestion = function(){
@@ -59,8 +57,7 @@ GameManager.prototype.generateNewQuestion = function(){
 }
 
 GameManager.prototype.wrongAnswer = function(){
-    this.score = 0;
-    this.question = this.generateNewQuestion();
+    this.over = true;
     this.actuate();
 }
 
@@ -98,7 +95,6 @@ GameManager.prototype.actuate = function () {
   this.actuator.actuate(this.question, {
     score:      this.score,
     over:       this.over,
-    won:        this.won,
     bestScore:  this.bestscore,
     terminated: this.isGameTerminated()
   });
