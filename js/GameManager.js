@@ -8,8 +8,14 @@ function GameManager(InputManager, Actuator, StorageManager) {
 
   this.inputManager.on("answerSelected", this.checkAnswer.bind(this));
   this.inputManager.on("wrongAnswer", this.wrongAnswer.bind(this));
+  this.inputManager.on("restartGame", this.restart.bind(this));
   this.setup();
 };
+
+GameManager.prototype.restart = function(){
+  this.actuator.restartGame();
+  this.setup();
+}
 
 GameManager.prototype.setup = function(){
   this.question    = this.generateNewQuestion();
