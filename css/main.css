@@ -1,29 +1,23 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background: #faf8ef;
-  color: #776e65;
+  color: #776E65;
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 18px;
 }
+
 body {
   margin: 80px 0;
 }
-.container {
-  width: 500px;
-  margin: 0 auto;
-}
-a {
-  color: #776e65;
-  font-weight: bold;
-  text-decoration: underline;
-  cursor: pointer;
-}
+
 .heading:after {
   content: "";
   display: block;
   clear: both;
 }
+
 h1.title {
   font-size: 60px;
   font-weight: bold;
@@ -31,16 +25,7 @@ h1.title {
   display: block;
   float: left;
 }
-.math-base {
-  font-size: 18px;
-}
-.tile-inner {
-    border-radius: 3px;
-    text-align: center;
-    font-weight: bold;
-    z-index: 10;
-    font-size: 40px;
-}
+
 @-webkit-keyframes move-up {
   0% {
     top: 25px;
@@ -75,7 +60,9 @@ h1.title {
   float: right;
   text-align: right;
 }
-.score-container, .best-container {
+
+.score-container,
+.best-container {
   position: relative;
   display: inline-block;
   background: #bbada0;
@@ -89,7 +76,8 @@ h1.title {
   margin-top: 8px;
   text-align: center;
 }
-.score-container:after, .best-container:after {
+.score-container:after,
+.best-container:after {
   position: absolute;
   width: 100%;
   top: 10px;
@@ -100,7 +88,8 @@ h1.title {
   text-align: center;
   color: #eee4da;
 }
-.score-container .score-addition, .best-container .score-addition {
+.score-container .score-addition,
+.best-container .score-addition {
   position: absolute;
   right: 30px;
   color: red;
@@ -116,11 +105,46 @@ h1.title {
   -moz-animation-fill-mode: both;
   animation-fill-mode: both;
 }
+
 .score-container:after {
   content: "Score";
 }
+
 .best-container:after {
   content: "Best";
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  line-height: 1.65;
+}
+
+a {
+  color: #776E65;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+strong.important {
+  text-transform: uppercase;
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid #d8d4d0;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.math-base {
+  font-size: 18px;
 }
 
 .game-menu {
@@ -134,14 +158,13 @@ h1.title {
   z-index: 200;
   padding-top: 40px;
   text-align: center;
-  -webkit-animation: fade-in 800ms ease 1200ms;
-  -moz-animation: fade-in 800ms ease 1200ms;
-  animation: fade-in 800ms ease 1200ms;
-  -webkit-animation-fill-mode: both;
-  -moz-animation-fill-mode: both;
-  animation-fill-mode: both;
+  -webkit-animation: fade-in 100ms ease 1200ms;
+  -moz-animation: fade-in 100ms ease 1200ms;
+  animation: fade-in 100ms ease 1200ms;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
-
 .game-menu p {
   font-size: 60px;
   font-weight: bold;
@@ -149,7 +172,6 @@ h1.title {
   line-height: 60px;
   margin-top: 222px;
 }
-
 .game-menu.show-popup {
   display: block;
 }
@@ -165,14 +187,13 @@ h1.title {
   z-index: 100;
   padding-top: 40px;
   text-align: center;
-  -webkit-animation: fade-in 800ms ease 1200ms;
-  -moz-animation: fade-in 800ms ease 1200ms;
-  animation: fade-in 800ms ease 1200ms;
+  -webkit-animation: fade-in 100ms ease 1200ms;
+  -moz-animation: fade-in 100ms ease 1200ms;
+  animation: fade-in 100ms ease 1200ms;
   -webkit-animation-fill-mode: both;
   -moz-animation-fill-mode: both;
   animation-fill-mode: both;
 }
-
 .game-message p {
   font-size: 60px;
   font-weight: bold;
@@ -180,7 +201,6 @@ h1.title {
   line-height: 60px;
   margin-top: 222px;
 }
-
 .game-message .game-over-score {
   font-size: 60px;
   font-weight: bold;
@@ -188,21 +208,9 @@ h1.title {
   line-height: 60px;
   margin-top: 20px;
 }
-
 .game-message .lower {
   display: block;
   margin-top: 29px;
-}
-.game-message .mailing-list {
-  margin-top: 52px;
-}
-.game-message .mailing-list strong {
-  display: block;
-  margin-bottom: 10px;
-}
-.game-message .mailing-list .mailing-list-email-field {
-  width: 230px;
-  margin-right: 5px;
 }
 .game-message a {
   display: inline-block;
@@ -216,39 +224,8 @@ h1.title {
   cursor: pointer;
   margin-left: 9px;
 }
-.game-message a.keep-playing-button {
-  display: none;
-}
-.game-message .score-sharing {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 10px;
-}
-.game-message.game-won {
-  background: rgba(237, 194, 46, 0.5);
-  color: #f9f6f2;
-}
-.game-message.game-won a.keep-playing-button {
-  display: inline-block;
-}
-.game-message.game-won, .game-message.show-popup {
+.game-message.show-popup {
   display: block;
-}
-.game-message.game-won p, .game-message.show-popup p {
-  -webkit-animation: slide-up 1.5s ease-in-out 2500ms;
-  -moz-animation: slide-up 1.5s ease-in-out 2500ms;
-  animation: slide-up 1.5s ease-in-out 2500ms;
-  -webkit-animation-fill-mode: both;
-  -moz-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-.game-message.game-won .mailing-list, .game-message.show-popup .mailing-list {
-  -webkit-animation: fade-in 1.5s ease-in-out 2500ms;
-  -moz-animation: fade-in 1.5s ease-in-out 2500ms;
-  animation: fade-in 1.5s ease-in-out 2500ms;
-  -webkit-animation-fill-mode: both;
-  -moz-animation-fill-mode: both;
-  animation-fill-mode: both;
 }
 
 .progress-bar {
@@ -264,14 +241,24 @@ h1.title {
 }
 
 .btn-answer {
-    display: inline-block;
-    background: #8f7a66;
-    border-radius: 3px;
-    padding: 0 20px;
-    text-decoration: none;
-    color: #f9f6f2;
-    height: 40px;
-    line-height: 42px;
-    cursor: pointer;
-    margin: 0 9px;
-  }
+  display: inline-block;
+  background: #8f7a66;
+  border-radius: 3px;
+  padding: 0 20px;
+  text-decoration: none;
+  color: #f9f6f2;
+  height: 40px;
+  line-height: 42px;
+  cursor: pointer;
+  margin: 0 9px;
+}
+
+.question-inner {
+  border-radius: 3px;
+  text-align: center;
+  font-weight: bold;
+  z-index: 10;
+  font-size: 55px;
+}
+
+/*# sourceMappingURL=main.css.map */

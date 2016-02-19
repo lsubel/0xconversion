@@ -79,7 +79,7 @@ HTMLActuator.prototype.addQuestions = function(container, value, base, length){
   var elem_value  = document.createElement("span");
   var elem_base   = document.createElement("span");
 
-  inner.classList.add("tile-inner");
+  inner.classList.add("question-inner");
   elem_value.classList.add("math-value");
   elem_base.classList.add("math-base");
 
@@ -106,7 +106,7 @@ HTMLActuator.prototype.setOperator = function(container, operator){
   var wrapper   = document.createElement("div");
   var inner     = document.createElement("div");
 
-  inner.classList.add("tile-inner");
+  inner.classList.add("question-inner");
   inner.textContent = operator;
 
   // Add the inner part of the tile to the wrapper
