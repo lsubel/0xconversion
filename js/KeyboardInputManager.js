@@ -145,7 +145,7 @@ KeyboardInputManager.prototype.listen = function () {
     var dy = touchEndClientY - touchStartClientY;
     var absDy = Math.abs(dy);
 
-    if (Math.max(absDx, absDy) > 10) {
+    if (Math.max(absDx, absDy) > 160 && Math.abs(absDx) > 120) {
       // (right : left) : (down : up)
       self.emit("answerSelected", absDx < 0 ? 0 : 1);
     }
