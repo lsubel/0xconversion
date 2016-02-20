@@ -161,7 +161,7 @@ HTMLActuator.prototype.stopProgressBar = function(){
 HTMLActuator.prototype.showGameoverPopup = function(score){
   this.hideMainmenuPopup();
   this.messageContainer.classList.add("show-popup");
-  this.messageContainer.getElementsByTagName("p")[1].textContent = "You received " + score + " points."
+  this.messageContainer.getElementsByTagName("p")[0].textContent = "You received " + score + " points."
 }
 
 HTMLActuator.prototype.hideGameoverPopup = function(){
