@@ -48,6 +48,10 @@ h1.title {
 
 }
 
+.above-game {
+  @include clearfix;
+}
+
 .description-container {
   float: left;
   text-align: left;
@@ -129,10 +133,6 @@ hr {
 .container {
   width: $field-width;
   margin: 0 auto;
-}
-
-.math-base {
-  font-size: 18px;
 }
 .game-menu {
   display: none;
@@ -238,6 +238,9 @@ hr {
   z-index: 10;
   font-size: 55px;
 }
+.math-base {
+  font-size: 18px;
+}
 .game-explanation {
   margin-top: 50px;
 }
@@ -296,6 +299,17 @@ hr {
     margin-top: 2px;
   }
 
+  .description-container {
+      width: 55%;
+      display: block;
+      box-sizing: border-box;
+      line-height: 1.65;
+      padding: 0 0;
+            margin-bottom: 0;
+      height: 100%;
+
+    }
+
   // Render the game field at the right width
   //@include game-field;
 
@@ -310,5 +324,12 @@ hr {
     .lower {
       margin-top: 30px !important;
     }
+  }
+
+  .question-inner {
+    font-size: 30px;
+  }
+  .math-base {
+    font-size: 15px;
   }
 }
