@@ -57,6 +57,12 @@ h1.title {
     opacity: 0;
   }
 }
+.above-game:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
 .description-container {
   float: left;
   text-align: left;
@@ -148,10 +154,6 @@ hr {
 .container {
   width: 500px;
   margin: 0 auto;
-}
-
-.math-base {
-  font-size: 18px;
 }
 
 .game-menu {
@@ -269,6 +271,10 @@ hr {
   font-size: 55px;
 }
 
+.math-base {
+  font-size: 18px;
+}
+
 .game-explanation {
   margin-top: 50px;
 }
@@ -319,6 +325,16 @@ hr {
     margin-top: 2px;
   }
 
+  .description-container {
+    width: 55%;
+    display: block;
+    box-sizing: border-box;
+    line-height: 1.65;
+    padding: 0 0;
+    margin-bottom: 0;
+    height: 100%;
+  }
+
   .game-message p {
     font-size: 30px !important;
     height: 30px !important;
@@ -327,6 +343,14 @@ hr {
   }
   .game-message .lower {
     margin-top: 30px !important;
+  }
+
+  .question-inner {
+    font-size: 30px;
+  }
+
+  .math-base {
+    font-size: 15px;
   }
 }
 
