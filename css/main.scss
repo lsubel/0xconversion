@@ -9,6 +9,9 @@ $game-container-background: #bbada0;
 $background: #faf8ef;
 $popup-transparency: 0.92;
 $transition-speed: 100ms;
+$mobile-threshold: $field-width + 20px;
+
+
 html,
 body {
   margin: 0;
@@ -237,4 +240,75 @@ hr {
 }
 .game-explanation {
   margin-top: 50px;
+}
+
+
+
+
+
+@include smaller($mobile-threshold) {
+  // Redefine variables for smaller screens
+  $field-width: 280px;
+
+  html, body {
+    font-size: 15px;
+  }
+
+  body {
+    margin: 20px 0;
+    padding: 0 20px;
+  }
+
+  h1.title, p.title {
+    font-size: 27px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .container {
+    width: $field-width;
+    margin: 0 auto;
+  }
+
+  .score-container, .best-container {
+    margin-top: 0;
+    padding: 15px 10px;
+    min-width: 40px;
+  }
+
+  .heading {
+    margin-bottom: 10px;
+  }
+
+  // Show intro and restart button side by side
+  .game-intro {
+    width: 55%;
+    display: block;
+    box-sizing: border-box;
+    line-height: 1.65;
+  }
+
+  .restart-button {
+    width: 42%;
+    padding: 0;
+    display: block;
+    box-sizing: border-box;
+    margin-top: 2px;
+  }
+
+  // Render the game field at the right width
+  //@include game-field;
+
+  .game-message {
+    p {
+      font-size: 30px !important;
+      height: 30px !important;
+      line-height: 30px !important;
+      margin-top: 90px !important;
+    }
+
+    .lower {
+      margin-top: 30px !important;
+    }
+  }
 }
