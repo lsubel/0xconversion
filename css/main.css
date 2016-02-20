@@ -56,6 +56,12 @@ h1.title {
     opacity: 0;
   }
 }
+.description-container {
+  float: left;
+  text-align: left;
+  padding: 15px 0px;
+}
+
 .scores-container {
   float: right;
   text-align: right;
@@ -238,6 +244,7 @@ hr {
 
 .button-container {
   text-align: center;
+  margin-top: 20px;
 }
 
 .btn-answer {
@@ -259,6 +266,10 @@ hr {
   font-weight: bold;
   z-index: 10;
   font-size: 55px;
+}
+
+.game-explanation {
+  margin-top: 50px;
 }
 
 /*# sourceMappingURL=main.css.map */
