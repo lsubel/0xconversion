@@ -1,7 +1,7 @@
 # 0xConversion
 A number conversion game inspired by [You Can't Do Binary Under Pressure](http://games.usvsth3m.com/binary/) from Us Vs Th3m. The technical architecture and structure is heavily inspired by [2048](https://github.com/gabrielecirulli/2048) from Gabriele Cirulli.
 
-You can play the game [here](https://sheak90.github.io/0xconversion/).
+You can [play the game](https://lsubel.github.io/0xconversion/).
 
 This game is a byproduct of gaining technical understanding how to design an interactive web application.
 
